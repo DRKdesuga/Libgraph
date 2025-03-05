@@ -103,16 +103,15 @@ make clean
 Include the necessary headers in your program:
 
 ```c
-#include "graph/graph.h"
-#include "graph/traversal.h"
-#include "graph/utils.h"
+#include "graph.h"
+#include "utils.h"
 ```
 
 ### **Step 2: Link the Library**
 Compile your program with `libgraph.a` using the following command:
 
 ```bash
-gcc -std=c99 -Wall -Wextra -Werror -o my_program your_program.c -L. -lgraph
+gcc -std=c99 -Wall -Wextra -Werror -Iinclude -o my_program your_program.c -L. -lgraph
 ```
 
 - **`-L.`** : Specifies the directory where `libgraph.a` is located.
@@ -133,8 +132,8 @@ Here is a simple example demonstrating how to use `libgraph`:
 
 ```c
 #include <stdio.h>
-#include "graph/graph.h"
-#include "graph/utils.h"
+#include "graph.h"
+#include "utils.h"
 
 int main(void) {
     struct Graph *graph = graph_init(5, true);
