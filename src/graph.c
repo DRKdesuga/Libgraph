@@ -1,4 +1,4 @@
-#include "../graph/graph.h"
+#include "graph.h"
 
 #include <stdbool.h>
 #include <stddef.h>

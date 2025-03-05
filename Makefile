@@ -1,7 +1,7 @@
 CC = gcc
-CFLAGS = -std=c99 -Wall -Wextra -Werror -Wvla
+CFLAGS = -std=c99 -Wall -Wextra -Werror -Wvla -Iinclude
 
-SRC = src/fifo/fifo.c src/graph.c src/traversal.c src/utils.c
+SRC = src/fifo.c src/graph.c src/traversal.c src/utils.c
 OBJ = $(SRC:.c=.o)
 
 LIBRARY_NAME = libgraph.a

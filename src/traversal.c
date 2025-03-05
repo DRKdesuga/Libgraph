@@ -1,22 +1,13 @@
-#include "../graph/traversal.h"
+#include "traversal.h"
+#include "graph.h"
+#include "fifo.h"
 
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../graph/graph.h"
-#include "fifo/fifo.h"
 
-struct fifo *fifo_init(void);
-size_t fifo_size(struct fifo *fifo);
-bool fifo_is_empty(const struct fifo *fifo);
-void fifo_push(struct fifo *fifo, int elt);
-int fifo_head(struct fifo *fifo);
-void fifo_pop(struct fifo *fifo);
-void fifo_clear(struct fifo *fifo);
-void fifo_destroy(struct fifo *fifo);
-void fifo_print(const struct fifo *fifo);
 
 static void dfs(const struct Graph *g, int verticle, bool *seen)
 {

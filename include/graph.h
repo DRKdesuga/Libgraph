@@ -1,5 +1,5 @@
-#ifndef FIFO_H
-#define FIFO_H
+#ifndef GRAPH_H
+#define GRAPH_H
 
 #include <stdbool.h>
 #include <stdlib.h>
@@ -21,4 +21,4 @@ bool add_edge(struct Graph *graph, int src, int dest);
 struct Graph *graph_init(int verticles, bool directed);
 void free_graph(struct Graph *graph);
 
-#endif /* !FIFO_H */
+#endif /* GRAPH_H */

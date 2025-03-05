@@ -3,9 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../graph/graph.h"
-#include "../graph/traversal.h"
-#include "fifo/fifo.h"
+#include "graph.h"
+#include "traversal.h"
+#include "fifo.h"
 
 struct fifo *fifo_init(void);
 size_t fifo_size(struct fifo *fifo);
