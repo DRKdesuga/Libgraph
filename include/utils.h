@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-#include "../graph/graph.h"
+#include "graph.h"
 
 // Print the graph's adjacency list
 void print_graph(const struct Graph *graph);

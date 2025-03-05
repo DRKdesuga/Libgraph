@@ -7,33 +7,31 @@
 #include "traversal.h"
 #include "fifo.h"
 
-struct fifo *fifo_init(void);
-size_t fifo_size(struct fifo *fifo);
-bool fifo_is_empty(const struct fifo *fifo);
-void fifo_push(struct fifo *fifo, int elt);
-int fifo_head(struct fifo *fifo);
-void fifo_pop(struct fifo *fifo);
-void fifo_clear(struct fifo *fifo);
-void fifo_destroy(struct fifo *fifo);
-void fifo_print(const struct fifo *fifo);
 
-// Print the graph's adjacency list
+// Print the graph's adjacency list in dot format
+// tip : graphviz to visualize the graph.
 void print_graph(const struct Graph *graph)
 {
     if (!graph)
         return;
 
+    printf("digraph graph {\n");
     for (int i = 0; i < graph->order; i++)
     {
-        printf("Vertex %d: ", i);
+        printf("\t\"%d\" -> {", i);
         struct node *adj = graph->adj_list[i];
         while (adj)
         {
-            printf("%d -> ", adj->vertex);
+            printf("\"%d\"", adj->vertex);
+            if (adj->next)
+            {
+                printf(" ");
+            }
             adj = adj->next;
         }
-        printf("NULL\n");
+        printf("};\n");
     }
+    printf("}\n");
 }
 
 // Check if `find` is a neighbor of `src`
