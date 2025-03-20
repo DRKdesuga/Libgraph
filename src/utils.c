@@ -7,9 +7,6 @@
 #include "traversal.h"
 #include "fifo.h"
 
-
-// Print the graph's adjacency list in dot format
-// tip : graphviz to visualize the graph.
 void print_graph(const struct Graph *graph)
 {
     if (!graph)
@@ -34,7 +31,6 @@ void print_graph(const struct Graph *graph)
     printf("}\n");
 }
 
-// Check if `find` is a neighbor of `src`
 bool is_neighbor(const struct Graph *graph, int src, int find)
 {
     if (!graph || src < 0 || src >= graph->order || find < 0
@@ -56,7 +52,6 @@ bool is_neighbor(const struct Graph *graph, int src, int find)
     return false;
 }
 
-// DFS utility function to explore connected components
 static void dfs_component(const struct Graph *graph, int vertex, bool *visited)
 {
     visited[vertex] = true;
@@ -70,7 +65,6 @@ static void dfs_component(const struct Graph *graph, int vertex, bool *visited)
     }
 }
 
-// Check if two vertices belong to the same connected component
 bool same_component(const struct Graph *graph, int src, int dest)
 {
     if (!graph || src < 0 || src >= graph->order || dest < 0
@@ -88,7 +82,6 @@ bool same_component(const struct Graph *graph, int src, int dest)
     return result;
 }
 
-// Check if the entire graph is connected
 bool is_connected(const struct Graph *graph)
 {
     if (!graph)
@@ -112,7 +105,6 @@ bool is_connected(const struct Graph *graph)
     return true;
 }
 
-// Compute the in-degree of a vertex
 size_t in_degree(const struct Graph *graph, int vertex)
 {
     if (!graph || vertex < 0 || vertex >= graph->order)
@@ -135,7 +127,6 @@ size_t in_degree(const struct Graph *graph, int vertex)
     return count;
 }
 
-// Compute the out-degree of a vertex
 size_t out_degree(const struct Graph *graph, int vertex)
 {
     if (!graph || vertex < 0 || vertex >= graph->order)
@@ -151,7 +142,6 @@ size_t out_degree(const struct Graph *graph, int vertex)
     return count;
 }
 
-// BFS utility function to find the shortest path
 static bool bfs__path(const struct Graph *g, int verticle, int *pred, int stop)
 {
     struct fifo *q = fifo_init();
@@ -185,7 +175,6 @@ static bool bfs__path(const struct Graph *g, int verticle, int *pred, int stop)
     return false;
 }
 
-// Utility to reverse a list
 static void reverse(int *list, size_t length)
 {
     if (!list || length == 0)
@@ -198,7 +187,7 @@ static void reverse(int *list, size_t length)
         list[length - 1 - i] = temp;
     }
 }
-// Find the shortest path between two vertices
+
 int *smallest_path(const struct Graph *graph, int start, int stop)
 {
     if (!graph || start < 0 || stop < 0 || start >= graph->order
@@ -221,9 +210,8 @@ int *smallest_path(const struct Graph *graph, int start, int stop)
         return NULL;
     }
 
-    // Temporary path storage
     int *path =
-        malloc((graph->order + 1) * sizeof(int)); // +1 for -3 terminator
+        malloc((graph->order + 1) * sizeof(int));
     if (!path)
     {
         perror("Memory allocation error");
@@ -238,15 +226,12 @@ int *smallest_path(const struct Graph *graph, int start, int stop)
         path[i++] = current;
         current = pred[current];
     }
-    path[i++] = start; // Add the start vertex
+    path[i++] = start;
 
-    // Reverse the path to get the correct order
     reverse(path, i);
 
-    // Add the terminator (-3)
     path[i++] = -3;
 
-    // Resize the path array to fit its content
     int *resized_path = realloc(path, sizeof(int) * i);
     if (!resized_path)
     {
@@ -295,14 +280,12 @@ int *topological_sort(const struct Graph *graph) {
 
     int stack_index = 0;
 
-    // Perform DFS for all vertices
     for (int i = 0; i < graph->order; i++) {
         if (!visited[i]) {
             topological_sort_util(graph, i, visited, stack, &stack_index);
         }
     }
 
-    // Reverse the stack to get the topological order
     for (int i = 0; i < stack_index / 2; i++) {
         int temp = stack[i];
         stack[i] = stack[stack_index - 1 - i];
@@ -310,5 +293,5 @@ int *topological_sort(const struct Graph *graph) {
     }
 
     free(visited);
-    return stack; // The stack now contains the topological order
+    return stack;
 }

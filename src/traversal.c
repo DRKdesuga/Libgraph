@@ -37,17 +37,17 @@ void dfs_print(const struct Graph *graph)
     int component = 1;
     for (int i = 0; i < graph->order; i++)
     {
-        if (!seen[i]) // Si le sommet n'a pas été visité
+        if (!seen[i])
         {
             printf("Component %d:\n", component);
-            seen[i] = true; // Marquer le sommet comme visité
-            printf("%d\n", i); // Afficher le sommet
-            dfs(graph, i, seen); // Appel DFS sur ce sommet
+            seen[i] = true;
+            printf("%d\n", i);
+            dfs(graph, i, seen);
             component++;
         }
     }
 
-    free(seen); // Libérer la mémoire
+    free(seen);
 }
 
 static void bfs(const struct Graph *g, int verticle, int *level)
