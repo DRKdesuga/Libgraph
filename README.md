@@ -79,20 +79,36 @@ struct node {
 
 ---
 
-## **Compiling the Library**
+## Compiling the Library with CMake
 
-To build the static library `libgraph.a`, use the provided Makefile:
+### Step 1: Create a Build Directory
+Although the build files will be generated in a separate directory, the final library will be placed in the project root.
 
 ```bash
-make library
+mkdir build
 ```
 
-This will generate the file `libgraph.a` in the current directory.
-
-To clean up the generated files:
+### Step 2: Configure the Project
+Run the following command from the project root:
 
 ```bash
-make clean
+cmake -S . -B build
+```
+
+### Step 3: Build the Project
+Execute the build command:
+
+```bash
+cmake --build build
+```
+
+### Step 4: Cleaning Up
+After the build completes, you will find the static library `libgraph.a` in the project root directory.
+
+To clean up the build files, simply remove the `build` directory:
+
+```bash
+rm -rf build
 ```
 
 ---
